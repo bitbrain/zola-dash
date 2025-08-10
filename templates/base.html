@@ -2,6 +2,15 @@
 <html lang="en" class="scroll-smooth">
     <head>
         <meta charset="utf-8">
+        
+        <script>
+            const isDarkMode = localStorage.getItem('is_darkmode_set') === 'true';
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark');
+            }
+        </script>
+        
+        <meta name="color-scheme" content="light dark">
 
         {% set gtag_id = config.extra.google_analytics_measurement_id %}
         {% if gtag_id %}

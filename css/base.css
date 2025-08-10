@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    background-color: #ffffff;
+}
+
+html.dark {
+    background-color: #0f172a;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+body.dark {
+    background-color: #0f172a;
+}
+
 @layer utilities {
 	.prose-boring {
 		@apply
