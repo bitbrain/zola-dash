@@ -25,6 +25,9 @@
                 <i class="las la-level-up-alt"></i>
             </div>
             <a href="/"><i class="las la-home"></i></a>
+            {% if config.generate_feeds %}
+            <a href="{{ get_url(path='atom.xml') }}"><i class="las la-rss"></i></a>
+            {% endif %}
             <div id="darkmode-toggle" class="cursor-pointer">
                 <div class="hidden dark:inline">
                     <i class="las la-sun"></i>

@@ -4,6 +4,12 @@
 
 {% block head_extend %}
     <title>{{ section.title }} | {{ config.title }}</title>
+    {% if config.generate_feeds %}
+    <link rel="alternate"
+          type="application/atom+xml"
+          title="{{ section.title }} feed"
+          href="{{ section.permalink }}atom.xml">
+    {% endif %}
 {% endblock head_extend %}
 
 {% block content %}

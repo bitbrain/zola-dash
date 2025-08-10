@@ -16,6 +16,13 @@
             </script>
         {% endif %}
 
+        {% if config.generate_feeds %}
+        <link rel="alternate"
+              type="application/atom+xml"
+              title="{{ config.title }} feed"
+              href="{{ get_url(path='atom.xml') }}">
+        {% endif %}
+
         <link rel="stylesheet" href="/css/style.css"/>
         <link rel="stylesheet" href="/line-awesome/css/line-awesome.min.css"/>
         <script src="/js/main.js" defer></script>
