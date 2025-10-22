@@ -4,6 +4,28 @@
 
 {% block head_extend %}
     <title>{{ page.title }} | {{ config.title }}</title>
+    {# fediverse:creator meta for Mastodon if configured #}
+    {% set_global mastodon_url = "" %}
+    {% if config.extra.social %}
+        {% for s in config.extra.social %}
+            {% if mastodon_url == "" %}
+                {% if s.url and (s.url | split(pat="/@") | length) > 1 %}
+                    {% set_global mastodon_url = s.url %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if config.extra.mastodon_url and mastodon_url == "" %}
+        {% set_global mastodon_url = config.extra.mastodon_url %}
+    {% endif %}
+    {% if mastodon_url %}
+        {% set parts = mastodon_url | trim_end_matches(pat="/") | split(pat="/@") %}
+        {% if parts | length == 2 %}
+            {% set instance = parts | first | trim_start_matches(pat="https://") | trim_start_matches(pat="http://") %}
+            {% set handle = parts | last %}
+            <meta name="fediverse:creator" content="@{{ handle }}@{{ instance }}">
+        {% endif %}
+    {% endif %}
 {% endblock head_extend %}
 
 {% block content %}

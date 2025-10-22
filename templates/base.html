@@ -12,6 +12,24 @@
         
         <meta name="color-scheme" content="light dark">
 
+        {# Detect Mastodon URL from config.extra.social or explicit extra.mastodon_url #}
+        {% set_global mastodon_url = "" %}
+        {% if config.extra.social %}
+            {% for s in config.extra.social %}
+                {% if mastodon_url == "" %}
+                    {% if s.url and (s.url | split(pat="/@") | length) > 1 %}
+                        {% set_global mastodon_url = s.url %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if config.extra.mastodon_url and mastodon_url == "" %}
+            {% set_global mastodon_url = config.extra.mastodon_url %}
+        {% endif %}
+        {% if mastodon_url %}
+            <link rel="me" href="{{ mastodon_url }}">
+        {% endif %}
+
         {% set gtag_id = config.extra.google_analytics_measurement_id %}
         {% if gtag_id %}
             <!-- Google tag (gtag.js) -->
