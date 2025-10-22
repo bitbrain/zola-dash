@@ -1,10 +1,10 @@
-name = "boring"
-description = "A minimal theme"
+name = "zola-dash"
+description = "A minimal theme, based on boring"
 license = "GPLv3"
-homepage = "https://github.com/ssiyad/boring"
+homepage = "https://github.com/bitbrain/zola-dash"
 # The minimum version of Zola required
 min_version = "0.16.0"
-demo = "https://boring-zola.netlify.app/"
+demo = "https://bitbra.in"
 
 # Any variable there can be overridden in the end user `config.toml`
 # You don't need to prefix variables by the theme name but as this will
@@ -17,5 +17,5 @@ homepage_img_url = ""
 
 # The theme author info: you!
 [author]
-name = "Sabu Siyad"
-homepage = "https://ssiyad.com"
+name = "bitbrain"
+homepage = "https://bitbra.in"
