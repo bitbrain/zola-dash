@@ -29,13 +29,13 @@ body.dark {
 		leading-relaxed
 		max-w-none
 		prose-pre:rounded-none
-		prose-headings:bg-amber-100
+		prose-headings:bg-blue-500
 		prose-headings:text-slate-800 
 		prose-headings:font-normal
 		prose-headings:p-2
 		prose-headings:font-serif
 		dark:prose-invert
-		dark:prose-headings:bg-indigo-900
+		dark:prose-headings:bg-blue-500
 		dark:prose-headings:text-slate-300
 	}
 }

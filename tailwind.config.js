@@ -16,7 +16,7 @@ module.exports = {
     fontFamily: {
       serif: ['"Crimson Pro"', ...defaultTheme.fontFamily.serif],
       sans: ['"Work Sans"', ...defaultTheme.fontFamily.sans],
-      mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
+      mono: ['"Cascadia Mono"', '"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
     },
     extend: {
       colors: {
@@ -53,6 +53,23 @@ module.exports = {
         blue: { 500: '#637AFE' },
         purple: { 500: '#8E59D7' },
       }
+      ,
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            code: { fontStyle: 'normal', fontSize: '1rem' },
+            pre: { fontSize: '1rem' },
+            'pre code': { fontStyle: 'normal', fontSize: '1rem' },
+          }
+        },
+        invert: {
+          css: {
+            code: { fontStyle: 'normal', fontSize: '1rem' },
+            pre: { fontSize: '1rem' },
+            'pre code': { fontStyle: 'normal', fontSize: '1rem' },
+          }
+        }
+      })
     },
   },
   variants: {},

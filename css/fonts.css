@@ -24,9 +24,37 @@
     }
 
     @font-face {
+        font-family: 'Cascadia Mono';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/fonts/CascadiaMono-Regular.ttf');
+    }
+
+    @font-face {
+        font-family: 'Cascadia Mono';
+        font-style: italic;
+        font-weight: 400;
+        src: url('/fonts/CascadiaMono-Italic.ttf');
+    }
+
+    @font-face {
+        font-family: 'Cascadia Mono';
+        font-style: normal;
+        font-weight: 600;
+        src: url('/fonts/CascadiaMono-SemiBold.ttf');
+    }
+
+    @font-face {
+        font-family: 'Cascadia Mono';
+        font-style: italic;
+        font-weight: 600;
+        src: url('/fonts/CascadiaMono-SemiBoldItalic.ttf');
+    }
+
+    @font-face {
         font-family: 'JetBrains Mono';
         font-style: normal;
-        src: url('/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf');
+        src: url('/fonts/JetBrainsMono-VariableFont_wght.ttf');
     }
 
     @font-face {

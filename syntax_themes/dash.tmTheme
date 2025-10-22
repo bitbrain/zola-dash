@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>name</key><string>dash</string>
+  <key>uuid</key><string>dash-theme-0001</string>
+
+  <key>settings</key>
+  <array>
+    <!-- Global -->
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key><string>#090a0c</string>
+        <key>foreground</key><string>#DAE4ED</string>
+        <key>caret</key><string>#637AFE</string>
+        <key>selection</key><string>#15171A</string>
+        <key>lineHighlight</key><string>#15171A</string>
+        <key>inactiveSelection</key><string>#15171A</string>
+      </dict>
+    </dict>
+
+    <!-- Comments -->
+    <dict>
+      <key>scope</key><string>comment, punctuation.definition.comment</string>
+      <key>settings</key><dict><key>foreground</key><string>#353E4A</string></dict>
+    </dict>
+
+    <!-- Keywords / storage -->
+    <dict>
+      <key>scope</key><string>keyword, storage.type, storage.modifier</string>
+      <key>settings</key><dict><key>foreground</key><string>#5981F5</string></dict>
+    </dict>
+
+    <!-- Functions / methods -->
+    <dict>
+      <key>scope</key><string>entity.name.function, support.function</string>
+      <key>settings</key><dict><key>foreground</key><string>#FFFFFF</string></dict>
+    </dict>
+
+    <!-- Classes / types -->
+    <dict>
+      <key>scope</key><string>entity.name.type, support.type, storage.type</string>
+      <key>settings</key><dict><key>foreground</key><string>#E8447E</string></dict>
+    </dict>
+
+    <!-- Annotations -->
+    <dict>
+      <key>scope</key><string>meta.annotation, storage.type.annotation, entity.name.annotation</string>
+      <key>settings</key><dict><key>foreground</key><string>#E8447E</string></dict>
+    </dict>
+
+    <!-- Strings -->
+    <dict>
+      <key>scope</key><string>string, constant.other.symbol</string>
+      <key>settings</key><dict><key>foreground</key><string>#4EBC6B</string></dict>
+    </dict>
+
+    <!-- Numbers / constants -->
+    <dict>
+      <key>scope</key><string>constant.numeric, constant.language, constant.character</string>
+      <key>settings</key><dict><key>foreground</key><string>#EA9433</string></dict>
+    </dict>
+
+    <!-- Variables -->
+    <dict>
+      <key>scope</key><string>variable, variable.parameter, support.variable</string>
+      <key>settings</key><dict><key>foreground</key><string>#FFFFFF</string></dict>
+    </dict>
+
+    <!-- Operators / punctuation -->
+    <dict>
+      <key>scope</key><string>keyword.operator, punctuation</string>
+      <key>settings</key><dict><key>foreground</key><string>#B7C3CE</string></dict>
+    </dict>
+
+    <!-- Attributes / properties -->
+    <dict>
+      <key>scope</key><string>entity.other.attribute-name, support.type.property-name</string>
+      <key>settings</key><dict><key>foreground</key><string>#EA9D53</string></dict>
+    </dict>
+
+    <!-- Error / invalid -->
+    <dict>
+      <key>scope</key><string>invalid, invalid.illegal, markup.deleted</string>
+      <key>settings</key><dict><key>foreground</key><string>#F24784</string></dict>
+    </dict>
+
+    <!-- Added / inserted -->
+    <dict>
+      <key>scope</key><string>markup.inserted</string>
+      <key>settings</key><dict><key>foreground</key><string>#50BD6A</string></dict>
+    </dict>
+
+    <!-- Changed -->
+    <dict>
+      <key>scope</key><string>markup.changed</string>
+      <key>settings</key><dict><key>foreground</key><string>#FCBC28</string></dict>
+    </dict>
+  </array>
+</dict></plist>
+
+
