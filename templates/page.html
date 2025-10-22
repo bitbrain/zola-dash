@@ -4,6 +4,25 @@
 
 {% block head_extend %}
     <title>{{ page.title }} | {{ config.title }}</title>
+    {# Open Graph / Twitter Cards #}
+    {% set og_title = page.title %}
+    {% set og_desc = page.summary | default(value=page.description) | default(value=config.description) %}
+    {% set og_url = page.permalink %}
+    {% set og_image = page.extra.og_image | default(value=page.extra.image) | default(value=config.extra.og_image) | default(value=config.extra.homepage_img_url) %}
+    {% if og_image %}
+        {% set og_image_abs = get_url(path=og_image) %}
+    {% endif %}
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ og_title }}">
+    {% if og_desc %}<meta property="og:description" content="{{ og_desc | striptags | trim }}">{% endif %}
+    <meta property="og:url" content="{{ og_url }}">
+    <meta property="og:site_name" content="{{ config.title }}">
+    {% if og_image_abs %}<meta property="og:image" content="{{ og_image_abs }}">{% endif %}
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ og_title }}">
+    {% if og_desc %}<meta name="twitter:description" content="{{ og_desc | striptags | trim }}">{% endif %}
+    {% if og_image_abs %}<meta name="twitter:image" content="{{ og_image_abs }}">{% endif %}
     {# fediverse:creator meta for Mastodon if configured #}
     {% set_global mastodon_url = "" %}
     {% if config.extra.social %}
