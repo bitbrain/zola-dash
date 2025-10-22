@@ -62,6 +62,14 @@ module.exports = {
             'pre code': { fontStyle: 'normal', fontSize: '1rem' },
           }
         },
+        // Ensure large typography scale keeps code/pre at 1rem in light mode
+        '2xl': {
+          css: {
+            code: { fontStyle: 'normal', fontSize: '1rem' },
+            pre: { fontSize: '1rem' },
+            'pre code': { fontStyle: 'normal', fontSize: '1rem' },
+          }
+        },
         invert: {
           css: {
             code: { fontStyle: 'normal', fontSize: '1rem' },

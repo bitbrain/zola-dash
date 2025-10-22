@@ -38,4 +38,17 @@ body.dark {
 		dark:prose-headings:bg-blue-500
 		dark:prose-headings:text-slate-300
 	}
+
+	/* Ensure code/pre are 1rem in both themes and at lg breakpoint */
+	.prose-boring :where(code) {
+		font-size: 1rem;
+		font-style: normal;
+	}
+	.prose-boring :where(pre) {
+		font-size: 1rem;
+	}
+	.prose-boring :where(pre code) {
+		font-size: 1rem;
+		font-style: normal;
+	}
 }

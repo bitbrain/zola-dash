@@ -12,17 +12,46 @@
         
         <meta name="color-scheme" content="light dark">
 
-        {# Detect Mastodon URL from config.extra.social or explicit extra.mastodon_url #}
+        {# Detect Mastodon/Fediverse URL from config.extra.social with heuristics, then explicit extra.mastodon_url #}
         {% set_global mastodon_url = "" %}
         {% if config.extra.social is defined %}
+            {# Pass 1: prefer entries explicitly labeled mastodon/fedi/fediverse (via icon or name) and valid /@ structure #}
             {% for s in config.extra.social %}
                 {% if mastodon_url == "" and s.url %}
-                    {% set parts = s.url | split(pat="/@") %}
-                    {% if parts | length > 1 %}
-                        {% set_global mastodon_url = s.url %}
+                    {% set icon = s.icon | default(value="") | lower %}
+                    {% set name = s.name | default(value="") | lower %}
+                    {% set icon_has_mastodon = icon | split(pat="mastodon") %}
+                    {% set icon_has_fedi = icon | split(pat="fedi") %}
+                    {% set name_has_mastodon = name | split(pat="mastodon") %}
+                    {% set name_has_fedi = name | split(pat="fedi") %}
+                    {% set name_has_fediverse = name | split(pat="fediverse") %}
+                    {% if (icon_has_mastodon | length > 1) or (icon_has_fedi | length > 1) or (name_has_mastodon | length > 1) or (name_has_fedi | length > 1) or (name_has_fediverse | length > 1) %}
+                        {% set parts = s.url | split(pat="/@") %}
+                        {% if parts | length == 2 %}
+                            {% set user_and_rest = parts | last %}
+                            {% set user_parts = user_and_rest | split(pat="/") %}
+                            {% if user_parts | length == 1 and user_and_rest | length > 0 %}
+                                {% set_global mastodon_url = s.url %}
+                            {% endif %}
+                        {% endif %}
                     {% endif %}
                 {% endif %}
             {% endfor %}
+            {# Pass 2: fall back to any URL with proper /@username structure #}
+            {% if mastodon_url == "" %}
+                {% for s in config.extra.social %}
+                    {% if mastodon_url == "" and s.url %}
+                        {% set parts = s.url | split(pat="/@") %}
+                        {% if parts | length == 2 %}
+                            {% set user_and_rest = parts | last %}
+                            {% set user_parts = user_and_rest | split(pat="/") %}
+                            {% if user_parts | length == 1 and user_and_rest | length > 0 %}
+                                {% set_global mastodon_url = s.url %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         {% endif %}
         {% if config.extra.mastodon_url is defined and mastodon_url == "" and config.extra.mastodon_url %}
             {% set_global mastodon_url = config.extra.mastodon_url %}
