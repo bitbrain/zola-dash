@@ -8,9 +8,23 @@
     {% set og_title = page.title %}
     {% set og_desc = page.summary | default(value=page.description) | default(value=config.description) %}
     {% set og_url = page.permalink %}
-    {% set og_image = page.extra.og_image | default(value=page.extra.image) | default(value=config.extra.og_image) | default(value=config.extra.homepage_img_url) %}
-    {% if og_image %}
-        {% set og_image_abs = get_url(path=og_image) %}
+    {% set_global og_image = "" %}
+    {% if page.extra is defined and page.extra.og_image is defined and page.extra.og_image %}
+        {% set_global og_image = page.extra.og_image %}
+    {% elif page.extra is defined and page.extra.image is defined and page.extra.image %}
+        {% set_global og_image = page.extra.image %}
+    {% elif config.extra is defined and config.extra.og_image is defined and config.extra.og_image %}
+        {% set_global og_image = config.extra.og_image %}
+    {% elif config.extra is defined and config.extra.homepage_img_url is defined and config.extra.homepage_img_url %}
+        {% set_global og_image = config.extra.homepage_img_url %}
+    {% endif %}
+    {% if og_image != "" %}
+        {% set parts = og_image | split(pat="://") %}
+        {% if parts | length > 1 %}
+            {% set og_image_abs = og_image %}
+        {% else %}
+            {% set og_image_abs = get_url(path=og_image) %}
+        {% endif %}
     {% endif %}
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ og_title }}">
@@ -25,22 +39,27 @@
     {% if og_image_abs %}<meta name="twitter:image" content="{{ og_image_abs }}">{% endif %}
     {# fediverse:creator meta for Mastodon if configured #}
     {% set_global mastodon_url = "" %}
-    {% if config.extra.social %}
+    {% if config.extra.social is defined %}
         {% for s in config.extra.social %}
-            {% if mastodon_url == "" %}
-                {% if s.url and (s.url | split(pat="/@") | length) > 1 %}
+            {% if mastodon_url == "" and s.url %}
+                {% set parts = s.url | split(pat="/@") %}
+                {% if parts | length > 1 %}
                     {% set_global mastodon_url = s.url %}
                 {% endif %}
             {% endif %}
         {% endfor %}
     {% endif %}
-    {% if config.extra.mastodon_url and mastodon_url == "" %}
+    {% if config.extra.mastodon_url is defined and mastodon_url == "" and config.extra.mastodon_url %}
         {% set_global mastodon_url = config.extra.mastodon_url %}
     {% endif %}
     {% if mastodon_url %}
-        {% set parts = mastodon_url | trim_end_matches(pat="/") | split(pat="/@") %}
+        {% set mu = mastodon_url | replace(from="https://", to="") | replace(from="http://", to="") %}
+        {% if mu | ends_with(suffix="/") %}
+            {% set mu = mu | slice(end=(mu | length - 1)) %}
+        {% endif %}
+        {% set parts = mu | split(pat="/@") %}
         {% if parts | length == 2 %}
-            {% set instance = parts | first | trim_start_matches(pat="https://") | trim_start_matches(pat="http://") %}
+            {% set instance = parts | first %}
             {% set handle = parts | last %}
             <meta name="fediverse:creator" content="@{{ handle }}@{{ instance }}">
         {% endif %}
