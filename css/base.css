@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 html {
-    background-color: #ffffff;
+    background-color: #DAE4ED;
 }
 
 html.dark {
-    background-color: #0f172a;
+    background-color: #0F1014;
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #DAE4ED;
 }
 
 body.dark {
-    background-color: #0f172a;
+    background-color: #0F1014;
 }
 
 @layer utilities {

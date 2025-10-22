@@ -18,6 +18,42 @@ module.exports = {
       sans: ['"Work Sans"', ...defaultTheme.fontFamily.sans],
       mono: ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
     },
+    extend: {
+      colors: {
+        // Light/Dark surfaces mapped from jekyll-dash
+        white: '#DAE4ED', // light background
+        slate: {
+          100: '#EEF4F8',
+          300: '#CFD9E2',
+          400: '#B7C3CE',
+          500: '#A0ADBA',
+          600: '#8793A0',
+          700: '#5F6B78',
+          800: '#15171A', // dark header
+          900: '#0F1014', // dark content/background
+        },
+        gray: {
+          400: '#B7C3CE',
+          500: '#A0ADBA',
+        },
+        amber: {
+          100: '#FFF4D6', // pale from jekyll yellow
+        },
+        indigo: {
+          500: '#6775C4',
+          900: '#2F3A8C',
+        },
+        // Accent palette
+        red: { 500: '#F24784' },
+        orange: { 500: '#EA9D53' },
+        yellow: { 500: '#FCBC28' },
+        teal: { 500: '#4BC997' },
+        green: { 500: '#50BD6A' },
+        cyan: { 500: '#4FC1E4' },
+        blue: { 500: '#637AFE' },
+        purple: { 500: '#8E59D7' },
+      }
+    },
   },
   variants: {},
   plugins: [
