@@ -39,16 +39,22 @@ body.dark {
 		dark:prose-headings:text-slate-300
 	}
 
-	/* Ensure code/pre are 1rem in both themes and at lg breakpoint */
-	.prose-boring :where(code) {
-		font-size: 1rem;
-		font-style: normal;
-	}
-	.prose-boring :where(pre) {
-		font-size: 1rem;
-	}
-	.prose-boring :where(pre code) {
-		font-size: 1rem;
-		font-style: normal;
-	}
+		/* Make code/pre scale with surrounding text on small screens; pin to 1rem on desktop */
+		.prose-boring :where(code) {
+			font-size: 1em;
+			font-style: normal;
+		}
+		.prose-boring :where(pre) {
+			font-size: 1em;
+		}
+		.prose-boring :where(pre code) {
+			font-size: 1em;
+			font-style: normal;
+		}
+
+		@media (min-width: 1024px) {
+			.prose-boring :where(code) { font-size: 1rem; }
+			.prose-boring :where(pre) { font-size: 1rem; }
+			.prose-boring :where(pre code) { font-size: 1rem; }
+		}
 }
