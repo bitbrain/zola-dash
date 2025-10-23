@@ -80,6 +80,10 @@
               href="{{ get_url(path='atom.xml') }}">
         {% endif %}
 
+        {# Favicons #}
+        <link rel="icon" type="image/webp" href="{{ get_url(path='favicon.webp', cachebust=true) }}">
+        <link rel="icon" type="image/png" href="{{ get_url(path='favicon.png', cachebust=true) }}" sizes="32x32">
+
         <link rel="stylesheet" href="{{ get_url(path='css/style.css', cachebust=true) }}"/>
         <link rel="stylesheet" href="{{ get_url(path='css/overrides.css', cachebust=true) }}"/>
         <link rel="stylesheet" href="{{ get_url(path='line-awesome/css/line-awesome.min.css', cachebust=true) }}"/>
