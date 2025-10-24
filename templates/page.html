@@ -108,5 +108,70 @@
         <div class="prose-boring">
             {{ page.content | safe }}
         </div>
+        {# Author box #}
+        {% set has_author = page.extra is defined and (page.extra.author is defined or page.taxonomies is defined and page.taxonomies.authors is defined and page.taxonomies.authors | length > 0) %}
+        {% if has_author or (config.extra is defined and config.extra.social is defined) %}
+        <div class="bg-slate-100 dark:bg-slate-800 mt-12">
+            <div class="flex items-stretch lg:items-stretch">
+                {% set author_name = "" %}
+                {% if page.extra is defined and page.extra.author %}
+                    {% set author_name = page.extra.author %}
+                {% elif page.taxonomies is defined and page.taxonomies.authors is defined and page.taxonomies.authors | length > 0 %}
+                    {% set author_name = page.taxonomies.authors | first %}
+                {% endif %}
+                {% set author_image = "" %}
+                {% if page.extra is defined and page.extra.author_image %}
+                    {% set author_image = page.extra.author_image %}
+                {% elif page.extra is defined and page.extra.avatar %}
+                    {% set author_image = page.extra.avatar %}
+                {% elif config.extra is defined and config.extra.homepage_img_url %}
+                    {% set author_image = config.extra.homepage_img_url %}
+                {% elif config.extra is defined and config.extra.author_image %}
+                    {% set author_image = config.extra.author_image %}
+                {% endif %}
+                {% if author_image != "" %}
+                    {% set parts = author_image | split(pat="://") %}
+                    {% if parts | length > 1 %}
+                        {% set author_image_abs = author_image %}
+                    {% else %}
+                        {% set author_image_abs = get_url(path=author_image) %}
+                    {% endif %}
+                    <div class="author-box__media">
+                        <img src="{{ author_image_abs }}" alt="{{ author_name | default(value="Author") }}" class="author-box__avatar"/>
+                    </div>
+                {% endif %}
+                <div class="text-4xl lg:text-base text-slate-700 dark:text-slate-400 flex-1 author-box__content">
+                    {% if config.extra is defined and config.extra.homepage_title %}
+                        <h2 class="font-serif text-6xl lg:text-2xl text-slate-900 dark:text-slate-300 m-0 author-box__title">{{ config.extra.homepage_title }}</h2>
+                    {% elif author_name != "" %}
+                        <h2 class="font-serif text-6xl lg:text-2xl text-slate-900 dark:text-slate-300 m-0 author-box__title">{{ author_name }}</h2>
+                    {% endif %}
+                    {% if config.extra is defined and config.extra.homepage_subtitle %}
+                        <div class="font-sans text-5xl lg:text-xl text-slate-600 dark:text-slate-500 mb-4 author-box__subtitle">{{ config.extra.homepage_subtitle }}</div>
+                    {% endif %}
+                    {# Prefer page-specific social links under page.extra.social, else fall back to config.extra.social #}
+                    {% if page.extra is defined and page.extra.social is defined and page.extra.social | length > 0 %}
+                        {% set socials = page.extra.social %}
+                    {% elif config.extra is defined and config.extra.social is defined %}
+                        {% set socials = config.extra.social %}
+                    {% else %}
+                        {% set socials = [] %}
+                    {% endif %}
+                    {% if socials | length > 0 %}
+                        <div class="mt-2 text-8xl lg:text-4xl flex gap-3 homepage-social author-box__social">
+                            {% for s in socials %}
+                                {% if s.url and s.icon %}
+                                <div class="text-slate-500 hover:text-slate-700 transition">
+                                    <a href="{{ s.url }}" target="_blank" rel="me noopener noreferrer">
+                                        <i class="{{ s.icon }}"></i>
+                                    </a>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+            </div>
+        </div>
+        {% endif %}
     </div>
 {% endblock content %}
