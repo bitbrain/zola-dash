@@ -6,6 +6,9 @@
 .prose-boring :where(pre code),
 .prose-boring pre code{font-size:1em!important;font-style:normal}
 
+.giallo-l{display:inline-block;min-height:1lh;width:100%}
+.giallo-ln{display:inline-block;user-select:none;margin-right:.4em;padding:.4em;min-width:3ch;text-align:right;opacity:.8}
+
 /* Keep previous sizing on desktop */
 @media (min-width:1024px){
   .prose-boring :where(code),
