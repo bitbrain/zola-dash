@@ -97,11 +97,11 @@
 
 {% block content %}
     {{ macros::header(components=page.components, is_page=true) }}
-    <div class="container mb-16">
-        <div class="mt-4 font-serif text-slate-600 dark:text-slate-500 text-4xl lg:text-base">
+    <div class="container px-4 sm:px-6 lg:px-0 mb-16">
+        <div class="mt-4 font-serif text-slate-600 dark:text-slate-500 text-sm lg:text-base">
             {{ page.date | date(format="%Y-%m-%d") }}
         </div>
-        <h1 class="w-full mt-4 mb-8 font-serif text-8xl lg:text-4xl text-slate-900 dark:text-slate-300">
+        <h1 class="w-full mt-4 mb-8 font-serif text-4xl text-slate-900 dark:text-slate-300">
             {{ page.title }}
         </h1>
         <div class="w-100 border-t mb-8 border-slate-300 dark:border-slate-700"></div>
@@ -112,7 +112,7 @@
         {% set has_author = page.extra is defined and (page.extra.author is defined or page.taxonomies is defined and page.taxonomies.authors is defined and page.taxonomies.authors | length > 0) %}
         {% if has_author or (config.extra is defined and config.extra.social is defined) %}
         <div class="bg-slate-100 dark:bg-slate-800 mt-12">
-            <div class="flex items-stretch lg:items-stretch">
+            <div class="flex flex-col sm:flex-row items-stretch">
                 {% set author_name = "" %}
                 {% if page.extra is defined and page.extra.author %}
                     {% set author_name = page.extra.author %}
@@ -140,14 +140,14 @@
                         <img src="{{ author_image_abs }}" alt="{{ author_name | default(value="Author") }}" class="author-box__avatar"/>
                     </div>
                 {% endif %}
-                <div class="text-4xl lg:text-base text-slate-700 dark:text-slate-400 flex-1 author-box__content">
+                <div class="text-base text-slate-700 dark:text-slate-400 flex-1 author-box__content">
                     {% if config.extra is defined and config.extra.homepage_title %}
-                        <h2 class="font-serif text-6xl lg:text-2xl text-slate-900 dark:text-slate-300 m-0 author-box__title">{{ config.extra.homepage_title }}</h2>
+                        <h2 class="font-serif text-2xl text-slate-900 dark:text-slate-300 m-0 author-box__title">{{ config.extra.homepage_title }}</h2>
                     {% elif author_name != "" %}
-                        <h2 class="font-serif text-6xl lg:text-2xl text-slate-900 dark:text-slate-300 m-0 author-box__title">{{ author_name }}</h2>
+                        <h2 class="font-serif text-2xl text-slate-900 dark:text-slate-300 m-0 author-box__title">{{ author_name }}</h2>
                     {% endif %}
                     {% if config.extra is defined and config.extra.homepage_subtitle %}
-                        <div class="font-sans text-5xl lg:text-xl text-slate-600 dark:text-slate-500 mb-4 author-box__subtitle">{{ config.extra.homepage_subtitle }}</div>
+                        <div class="font-sans text-base lg:text-xl text-slate-600 dark:text-slate-500 mb-4 author-box__subtitle">{{ config.extra.homepage_subtitle }}</div>
                     {% endif %}
                     {# Prefer page-specific social links under page.extra.social, else fall back to config.extra.social #}
                     {% if page.extra is defined and page.extra.social is defined and page.extra.social | length > 0 %}
@@ -158,7 +158,7 @@
                         {% set socials = [] %}
                     {% endif %}
                     {% if socials | length > 0 %}
-                        <div class="mt-2 text-8xl lg:text-4xl flex gap-3 homepage-social author-box__social">
+                        <div class="mt-2 text-3xl lg:text-4xl flex gap-3 homepage-social author-box__social">
                             {% for s in socials %}
                                 {% if s.url and s.icon %}
                                 <div class="text-slate-500 hover:text-slate-700 transition">
@@ -170,6 +170,7 @@
                             {% endfor %}
                         </div>
                     {% endif %}
+                </div>
             </div>
         </div>
         {% endif %}

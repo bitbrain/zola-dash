@@ -23,10 +23,9 @@ body.dark {
 		@apply
 		prose
 		prose-slate
-		prose-2xl
+		prose-base
+		sm:prose-lg
 		lg:prose-base
-		text-4xl
-		leading-relaxed
 		max-w-none
 		prose-pre:rounded-none
 		prose-headings:bg-blue-500
