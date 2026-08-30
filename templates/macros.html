@@ -82,3 +82,27 @@
     </div>
 </section>
 {% endmacro author_summary %}
+
+{% macro footer() %}
+{% if config.extra.footer is defined and config.extra.footer.enabled | default(value=true) %}
+    {% set footer = config.extra.footer %}
+    {% set theme_name = footer.theme_name | default(value="") %}
+    {% set version = footer.version | default(value="") %}
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div class="site-footer__prompt"><span class="site-footer__prompt-symbol" aria-hidden="true">$</span> {{ footer.prompt | default(value="whoami") }}</div>
+            <div class="site-footer__meta">
+                {% if theme_name %}
+                    <span>{{ theme_name }}</span>
+                {% endif %}
+                {% if theme_name and version %}
+                    <span class="site-footer__separator" aria-hidden="true">•</span>
+                {% endif %}
+                {% if version %}
+                    <span>{{ version }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </footer>
+{% endif %}
+{% endmacro footer %}

@@ -15,6 +15,12 @@ homepage_title = ""
 homepage_subtitle = ""
 homepage_img_url = ""
 
+[extra.footer]
+enabled = true
+prompt = "whoami"
+theme_name = "zola-dash"
+version = "v2"
+
 # The theme author info: you!
 [author]
 name = "bitbrain"

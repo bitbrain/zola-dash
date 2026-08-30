@@ -1,3 +1,5 @@
+{% import "macros.html" as macros %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -91,9 +93,10 @@
         {% block head_extend %}{% endblock %}
     </head>
 
-    <body class="bg-white dark:bg-slate-900 transition ease-in-out">
-        <section>
+    <body class="site-body bg-white dark:bg-slate-900 transition ease-in-out">
+        <div class="site-content">
             {% block content %}{% endblock %}
-        </section>
+        </div>
+        {{ macros::footer() }}
     </body>
 </html>

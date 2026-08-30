@@ -65,8 +65,22 @@ body.dark {
 }
 
 @layer utilities {
-    .article-shell {
+    .site-body {
+        display: flex;
         min-height: 100vh;
+        min-height: 100dvh;
+        flex-direction: column;
+    }
+
+    .site-content {
+        display: flex;
+        min-width: 0;
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .article-shell {
+        flex: 1;
         padding-block: clamp(1.5rem, 3vw, 2rem) clamp(5rem, 8vw, 6rem);
         padding-inline: var(--article-gutter);
         background: var(--article-bg);
@@ -563,6 +577,67 @@ body.dark {
         color: var(--article-link-hover);
     }
 
+    .site-footer {
+        flex: none;
+        padding: 1rem var(--article-gutter);
+        background: var(--article-bg);
+        color: var(--article-muted);
+        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-size: .875rem;
+    }
+
+    .site-footer__inner {
+        display: flex;
+        width: min(100%, var(--article-max-inline-size));
+        margin-inline: auto;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem 2rem;
+    }
+
+    .site-footer__prompt {
+        color: var(--article-text);
+        white-space: nowrap;
+    }
+
+    .site-footer__prompt-symbol {
+        color: var(--dash-green);
+    }
+
+    .site-footer__prompt::after {
+        content: "";
+        display: inline-block;
+        width: .6em;
+        height: 1em;
+        background: var(--dash-blue);
+        vertical-align: -.15em;
+        animation: footer-cursor-blink 1s step-end infinite;
+    }
+
+    .site-footer__meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-end;
+        gap: .75rem;
+    }
+
+    .site-footer__separator {
+        color: var(--dash-accent);
+    }
+
+    @keyframes footer-cursor-blink {
+        50% {
+            visibility: hidden;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .site-footer__prompt::after {
+            animation: none;
+        }
+    }
+
     @container article-shell (width < 48rem) {
         .article-layout:not(.article-layout--without-toc) {
             grid-template-columns: minmax(0, 1fr);
@@ -582,6 +657,17 @@ body.dark {
         .article-author__avatar {
             width: 6rem;
             height: 6rem;
+        }
+    }
+
+    @media (width < 40rem) {
+        .site-footer__inner {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .site-footer__meta {
+            justify-content: flex-start;
         }
     }
 }

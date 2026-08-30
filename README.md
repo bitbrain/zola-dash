@@ -37,6 +37,14 @@ In your zola site directory
 - Change theme specific variables. They are listed in the `extra` section of
   `config.toml`.
 
+  ```toml
+  [extra.footer]
+  enabled = true
+  prompt = "whoami"
+  theme_name = "zola-dash"
+  version = "v2"
+  ```
+
 ### Colors
 This theme uses the Jekyll Dash color palette for both light and dark modes.
 If you want to customize, adjust the color values in `tailwind.config.js` under
