@@ -13,59 +13,48 @@
 {% endblock head_extend %}
 
 {% block content %}
-    {{ macros::header(components=section.components, is_page=false) }}
-    <div class="container px-4 sm:px-6 lg:px-0 mb-16">
+    {{ macros::header(components=section.components, is_page=false, article_style=true) }}
+    <div class="article-shell">
+        <main class="blog-index">
+            <header class="blog-index__header">
+                <h1>{{ section.title }}</h1>
+                <div class="article-rule" aria-hidden="true">---</div>
+            </header>
+
         {% if section.pages %}
-            <div class="my-8">
-                <div class="text-2xl bg-blue-500 text-slate-800
-                    dark:text-slate-300 p-2 w-max">
-                    Posts
-                </div>
-                <ul>
-                    {% for page in section.pages | sort(attribute="date") | reverse %}
-                        <li class="text-slate-900 hover:text-slate-600
-                            dark:text-slate-400 hover:dark:text-slate-300
-                            transition">
-                            <a class="flex my-6 lg:my-4 text-xl lg:text-base" href="{{ page.permalink | safe }}">
-                                <div class="flex flex-col lg:flex-row lg:items-center" style="gap: 0.25rem;">
-                                    <span>{{ page.title }}</span>
-                                    {% if page.date %}
-                                        <span class="text-sm text-slate-500 dark:text-slate-600 mt-2 lg:mt-0 lg:ml-2">
-                                            {{ page.date | date(format="%Y-%m-%d") }}
-                                        </span>
-                                    {% endif %}
-                                </div>
-                                <div class="ml-2 hidden lg:inline">
-                                    <i class="las la-arrow-right"></i>
-                                </div>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+            <ul class="blog-index__list">
+                {% for page in section.pages | sort(attribute="date") | reverse %}
+                    <li class="blog-index__item">
+                        <a class="blog-index__link" href="{{ page.permalink | safe }}">
+                            <span class="blog-index__prompt" aria-hidden="true">&gt;</span>
+                            <span class="blog-index__entry">
+                                <span class="blog-index__title">{{ page.title }}</span>
+                                {% if page.date %}
+                                    <time class="blog-index__date" datetime="{{ page.date }}">
+                                        {{ page.date | date(format="%b %-d, %Y") }}
+                                    </time>
+                                {% endif %}
+                            </span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
         {% endif %}
+
         {% if section.subsections %}
-            <div class="my-8">
-                <div class="text-2xl bg-blue-500
-                    text-slate-800 dark:text-slate-300 p-2 w-max">
-                    Categories 
-                </div>
-                <ul>
+            <section class="blog-index__directories">
+                <h2>## directories</h2>
+                <ul class="blog-index__directory-list">
                     {% for sub in section.subsections %}
                         {% set sect = get_section(path=sub, metadata_only=true) %}
-                        <li class="text-slate-900 hover:text-slate-600
-                            dark:text-slate-400 hover:dark:text-slate-300 transition">
-                            <a class="flex my-6 lg:my-4 text-xl lg:text-base" href="{{ sect.permalink }}">
-                                {{ sect.title }}
-                                <div class="ml-2 hidden lg:inline">
-                                    <i class="las la-arrow-right"></i>
-                                </div>
-                            </a>
+                        <li>
+                            <a href="{{ sect.permalink }}">./{{ sect.title }}/</a>
                         </li>
                     {% endfor %}
                 </ul>
-            </div>
+            </section>
         {% endif %}
+        </main>
     </div>
 {% endblock content %}
 

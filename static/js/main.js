@@ -42,6 +42,48 @@ function setActiveToc({ links, id }) {
     });
 }
 
+function getHeadingTopOffset() {
+    const header = document.querySelector('.article-site-header');
+    const rootStyles = getComputedStyle(document.documentElement);
+    const stickyGapValue = rootStyles
+        .getPropertyValue('--article-sticky-gap')
+        .trim();
+    const stickyGap = stickyGapValue.endsWith('rem')
+        ? parseFloat(stickyGapValue) * parseFloat(rootStyles.fontSize)
+        : parseFloat(stickyGapValue);
+    return (header?.offsetHeight || 0) + (stickyGap || 0);
+}
+
+function navigateToHeading({ heading, links }) {
+    const hash = `#${encodeURIComponent(heading.id)}`;
+    if (location.hash !== hash) history.pushState(null, '', hash);
+
+    setActiveToc({ links, id: heading.id });
+    window.scrollTo({
+        top: window.scrollY + heading.getBoundingClientRect().top -
+            getHeadingTopOffset(),
+        behavior: 'auto',
+    });
+}
+
+function updateActiveToc({ links, headings }) {
+    const topOffset = getHeadingTopOffset();
+    const isAtBottom = window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 1;
+    let activeHeading = headings[0];
+
+    if (isAtBottom) {
+        activeHeading = headings[headings.length - 1];
+    } else {
+        for (const heading of headings) {
+            if (heading.getBoundingClientRect().top > topOffset + 1) break;
+            activeHeading = heading;
+        }
+    }
+
+    setActiveToc({ links, id: activeHeading.id });
+}
+
 function initToc() {
     const links = Array.from(document.querySelectorAll('[data-toc-link]'));
     if (links.length === 0) return;
@@ -51,21 +93,83 @@ function initToc() {
         .filter((heading, index, items) => heading && items.indexOf(heading) === index);
 
     if (headings.length === 0) return;
-    setActiveToc({ links, id: headings[0].id });
+    let updatePending = false;
+    const update = () => {
+        updateActiveToc({ links, headings });
+        updatePending = false;
+    };
 
-    const observer = new IntersectionObserver((entries) => {
-        const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-        if (visible.length === 0) return;
-        setActiveToc({ links, id: visible[0].target.id });
-    }, {
-        rootMargin: '0px 0px -70% 0px',
+    links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const id = decodeURIComponent(link.hash.slice(1));
+            const heading = document.getElementById(id);
+            if (!heading) return;
+            navigateToHeading({ heading, links });
+        });
     });
 
-    headings.forEach((heading) => observer.observe(heading));
+    window.addEventListener('scroll', () => {
+        if (updatePending) return;
+        updatePending = true;
+        requestAnimationFrame(update);
+    }, { passive: true });
+
+    update();
 }
 
 initToc();
+
+function initHeadingAnchors() {
+    const links = Array.from(document.querySelectorAll('[data-toc-link]'));
+
+    document
+        .querySelectorAll('.article-prose :is(h1, h2, h3, h4, h5, h6)[id]')
+        .forEach((heading) => {
+            if (!heading.querySelector('a')) {
+                const anchor = document.createElement('a');
+                anchor.href = `#${heading.id}`;
+                anchor.className = 'heading-anchor';
+                while (heading.firstChild) {
+                    anchor.appendChild(heading.firstChild);
+                }
+                heading.appendChild(anchor);
+            }
+
+            heading.querySelector('.heading-anchor')?.addEventListener('click', (event) => {
+                event.preventDefault();
+                navigateToHeading({ heading, links });
+            });
+
+            heading.addEventListener('click', (event) => {
+                if (event.target.closest('a')) return;
+                navigateToHeading({ heading, links });
+            });
+        });
+}
+
+initHeadingAnchors();
+
+function initExternalLinks() {
+    document.querySelectorAll('a[href]').forEach((link) => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) {
+            return;
+        }
+
+        let url;
+        try {
+            url = new URL(href, window.location.href);
+        } catch {
+            return;
+        }
+
+        if (url.origin === window.location.origin) return;
+
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+    });
+}
+
+initExternalLinks();
 

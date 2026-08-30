@@ -1,8 +1,8 @@
-{% macro header(components, is_page) %}
-<div class="sticky top-0{% if is_page %} article-site-header{% else %} bg-slate-100 dark:bg-slate-800{% endif %}">
+{% macro header(components, is_page, article_style=false) %}
+<div class="sticky top-0{% if article_style %} article-site-header{% else %} bg-slate-100 dark:bg-slate-800{% endif %}">
     <div class="container mx-auto flex place-content-between
-        {% if is_page %}article-site-header__inner{% else %}px-4 sm:px-6 lg:px-0 py-4 lg:py-8{% endif %}
-        font-sans text-xl lg:text-2xl{% if not is_page %} text-slate-900 dark:text-white{% endif %}">
+        {% if article_style %}article-site-header__inner{% else %}px-4 sm:px-6 lg:px-0 py-4 lg:py-8{% endif %}
+        font-sans text-xl lg:text-2xl{% if not article_style %} text-slate-900 dark:text-white{% endif %}">
         <div class="flex">
             {% set_global rel_url = "/" %}
             {% for component in components %}
@@ -53,3 +53,32 @@
     {% endfor %}
 </ol>
 {% endmacro toc %}
+
+{% macro author_summary() %}
+<section class="article-author" aria-labelledby="article-author-title">
+    {% if config.extra.homepage_img_url %}
+        <img
+            class="article-author__avatar"
+            src="{{ config.extra.homepage_img_url }}"
+            alt="{{ config.extra.homepage_title | default(value=config.title) }}">
+    {% endif %}
+    <div class="article-author__content">
+        <h2 id="article-author-title" class="article-author__name">
+            {{ config.extra.homepage_title | default(value=config.title) }}
+        </h2>
+        {% if config.extra.homepage_subtitle %}
+            <p class="article-author__summary">{{ config.extra.homepage_subtitle }}</p>
+        {% endif %}
+        {% if config.extra.social %}
+            <div class="article-author__social" aria-label="Author social links">
+                {% for social in config.extra.social %}
+                    <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer">
+                        <i class="{{ social.icon }}" aria-hidden="true"></i>
+                        <span class="sr-only">{{ social.name | default(value="Author profile") }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endmacro author_summary %}

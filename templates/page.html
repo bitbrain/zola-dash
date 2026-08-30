@@ -96,7 +96,7 @@
 {% endblock head_extend %}
 
 {% block content %}
-    {{ macros::header(components=page.components, is_page=true) }}
+    {{ macros::header(components=page.components, is_page=true, article_style=true) }}
     <div class="article-shell">
         <a class="article-back-link" href="{{ get_url(path='blog') }}">← all posts</a>
 
@@ -124,6 +124,7 @@
                         <div class="article-toc__title">ON THIS PAGE</div>
                         {{ macros::toc(items=page.toc) }}
                     </nav>
+                    {{ macros::author_summary() }}
                 </aside>
             {% endif %}
         </main>
