@@ -26,11 +26,11 @@ module.exports = {
           100: '#EEF4F8',
           300: '#CFD9E2',
           400: '#B7C3CE',
-          500: '#A0ADBA',
+          500: '#5C697A',
           600: '#8793A0',
-          700: '#5F6B78',
-          800: '#15171A', // dark header
-          900: '#0F1014', // dark content/background
+          700: '#1C2026',
+          800: '#16191E',
+          900: '#0E1013',
         },
         gray: {
           400: '#B7C3CE',
@@ -44,14 +44,16 @@ module.exports = {
           900: '#2F3A8C',
         },
         // Accent palette
-        red: { 500: '#F24784' },
-        orange: { 500: '#EA9D53' },
-        yellow: { 500: '#FCBC28' },
-        teal: { 500: '#4BC997' },
-        green: { 500: '#50BD6A' },
-        cyan: { 500: '#4FC1E4' },
-        blue: { 500: '#637AFE' },
-        purple: { 500: '#8E59D7' },
+        red: { 500: '#FF4554' },
+        orange: { 500: '#ED9C50' },
+        yellow: { 500: '#ED9C50' },
+        teal: { 500: '#46C999' },
+        green: { 500: '#4EBC6B' },
+        cyan: { 500: '#46C999' },
+        blue: { 500: '#5B85FF' },
+        pink: { 500: '#F54784' },
+        purple: { 500: '#F54784' },
+        accent: '#637AFE',
       }
       ,
       typography: (theme) => ({
