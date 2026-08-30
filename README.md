@@ -1,12 +1,14 @@
 # Zola Dash
-Minimal theme for [Zola](https://www.getzola.org/), powered by
-[TailwindCSS](https://tailwindcss.com/). Color palette adapted from
-[Jekyll Dash](https://github.com/bitbrain/jekyll-dash).
+A modified version of [Boring](https://github.com/ssiyad/boring) for
+[Zola](https://www.getzola.org/), with a Vim-inspired touch and
+[bitbrain's Dash colour palette](https://github.com/bitbrain/jekyll-dash).
+Powered by [TailwindCSS](https://tailwindcss.com/).
 
 ### Demo
-Demo coming soon
 
-![sreenshot](./screenshot.png)
+[Link to bitbrain's blog](https://bitbra.in)
+
+![Screenshot](./screenshot.png)
 
 ### Setup
 In your zola site directory
@@ -45,21 +47,20 @@ In your zola site directory
   version = "v2"
   ```
 
-### Colors
-This theme uses the Jekyll Dash color palette for both light and dark modes.
-If you want to customize, adjust the color values in `tailwind.config.js` under
-`theme.extend.colors`, or override via your site Tailwind setup.
+### Colours
+The theme uses bitbrain's Dash colour palette in both light and dark modes.
+The palette is defined as CSS custom properties in `css/base.css`.
 
 The bundled `dash` syntax highlighting theme lives in
 `syntax_themes/dash.json` and is loaded through Zola's Giallo-based
 `[markdown.highlighting]` configuration.
 
-Refer [Zola Docs](https://www.getzola.org/documentation/themes/installing-and-using-themes/#using-a-theme)
-for further instructions
+See the [Zola documentation](https://www.getzola.org/documentation/themes/installing-and-using-themes/#using-a-theme)
+for further instructions.
 
-### Credits & License
-- Original Zola theme: [Boring](https://github.com/ssiyad/boring) by Sabu Siyad (GPLv3)
-- Color palette: [Jekyll Dash](https://github.com/bitbrain/jekyll-dash) by bitbrain (Apache-2.0)
+### Credits and license
+- Based on [Boring](https://github.com/ssiyad/boring) by Sabu Siyad (GPLv3)
+- Vim-inspired design and [Dash colour palette](https://github.com/bitbrain/jekyll-dash) by bitbrain (Apache-2.0)
 
 [GPLv3](./LICENSE)
 
