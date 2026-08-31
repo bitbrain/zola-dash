@@ -217,8 +217,7 @@ body.dark {
     .article-toc a {
         display: block;
         margin: .15rem 0;
-        padding: .35rem .75rem;
-        border-radius: 9999px;
+        padding: .35rem 0;
         color: inherit;
         line-height: 1.45;
         text-decoration: none;
@@ -229,19 +228,10 @@ body.dark {
     }
 
     .article-toc a:hover {
-        background: var(--article-surface);
         color: var(--article-link);
     }
 
     .article-toc a[aria-current="true"] {
-        padding-left: 1.25rem;
-        background:
-            radial-gradient(
-                circle at .55rem 50%,
-                var(--dash-accent) 0 .2rem,
-                transparent .21rem
-            ),
-            var(--article-surface);
         color: var(--dash-accent);
     }
 
@@ -406,25 +396,9 @@ body.dark {
         width: .45rem;
         height: .45rem;
         border-radius: 50%;
-        background: var(--dash-blue);
+        background: var(--article-list-marker);
         content: "";
         transform: translateY(-50%);
-    }
-
-    .article-prose ul > li:nth-child(5n + 2)::before {
-        background: var(--dash-green);
-    }
-
-    .article-prose ul > li:nth-child(5n + 3)::before {
-        background: var(--dash-yellow);
-    }
-
-    .article-prose ul > li:nth-child(5n + 4)::before {
-        background: var(--dash-pink);
-    }
-
-    .article-prose ul > li:nth-child(5n + 5)::before {
-        background: var(--dash-red);
     }
 
     .article-prose li::marker {
