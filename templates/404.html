@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% import "macros.html" as macros %}
+
 {% block content %}
     <div class="flex-1 w-screen flex flex-col items-center justify-center">
         <div class="font-serif text-6xl lg:text-8xl text-slate-800 dark:text-slate-400">
@@ -8,12 +10,12 @@
         <div class="flex items-center gap-1 text-4xl text-slate-500">
             <div class="p-2 hover:bg-slate-800 transition">
                 <a href="javascript:history.back()">
-                    <i class="las la-arrow-left"></i>
+                    {{ macros::icon(name="arrow-left") }}
                 </a>
             </div>
             <div class="p-2 hover:bg-slate-800 transition">
                 <a href="/">
-                    <i class="las la-home"></i>
+                    {{ macros::icon(name="home") }}
                 </a>
             </div>
         </div>

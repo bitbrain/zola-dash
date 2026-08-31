@@ -173,3 +173,59 @@ function initExternalLinks() {
 
 initExternalLinks();
 
+function getPrefetchUrl({ link }) {
+    const href = link?.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+    let url;
+    try {
+        url = new URL(href, window.location.href);
+    } catch {
+        return;
+    }
+
+    if (url.origin !== window.location.origin) return;
+    if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+    return url.href;
+}
+
+function initPagePrefetch() {
+    const prefetchedUrls = new Set();
+    let pendingPrefetch;
+
+    const prefetch = ({ link }) => {
+        const url = getPrefetchUrl({ link });
+        if (!url || prefetchedUrls.has(url)) return;
+
+        const hint = document.createElement('link');
+        hint.rel = 'prefetch';
+        hint.href = url;
+        hint.as = 'document';
+        document.head.appendChild(hint);
+        prefetchedUrls.add(url);
+    };
+
+    document.addEventListener('pointerover', (event) => {
+        const link = event.target.closest?.('a[href]');
+        if (link?.contains(event.relatedTarget)) return;
+        if (!getPrefetchUrl({ link })) return;
+        clearTimeout(pendingPrefetch);
+        pendingPrefetch = setTimeout(() => prefetch({ link }), 65);
+    });
+
+    document.addEventListener('pointerout', (event) => {
+        const link = event.target.closest?.('a[href]');
+        if (link?.contains(event.relatedTarget)) return;
+        clearTimeout(pendingPrefetch);
+    });
+    document.addEventListener('pointerdown', (event) => {
+        clearTimeout(pendingPrefetch);
+        prefetch({ link: event.target.closest?.('a[href]') });
+    }, { passive: true });
+    document.addEventListener('focusin', (event) => {
+        prefetch({ link: event.target.closest?.('a[href]') });
+    });
+}
+
+initPagePrefetch();
+

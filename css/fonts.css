@@ -2,64 +2,64 @@
     @font-face {
         font-family: 'Work Sans';
         font-style: normal;
-        src: url('/fonts/WorkSans-VariableFont_wght.ttf');
+        font-weight: 100 900;
+        font-display: block;
+        src: url('/fonts/WorkSans-VariableFont_wght.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Work Sans';
         font-style: italic;
-        src: url('/fonts/WorkSans-Italic-VariableFont_wght.ttf');
+        font-weight: 100 900;
+        font-display: block;
+        src: url('/fonts/WorkSans-Italic-VariableFont_wght.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Crimson Pro';
         font-style: normal;
-        src: url('/fonts/CrimsonPro-VariableFont_wght.ttf');
+        font-weight: 200 900;
+        font-display: block;
+        src: url('/fonts/CrimsonPro-VariableFont_wght.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Crimson Pro';
         font-style: italic;
-        src: url('/fonts/CrimsonPro-Italic-VariableFont_wght.ttf');
+        font-weight: 200 900;
+        font-display: block;
+        src: url('/fonts/CrimsonPro-Italic-VariableFont_wght.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Cascadia Mono';
         font-style: normal;
         font-weight: 400;
-        src: url('/fonts/CascadiaMono-Regular.ttf');
+        font-display: block;
+        src: url('/fonts/CascadiaMono-Regular.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Cascadia Mono';
         font-style: italic;
         font-weight: 400;
-        src: url('/fonts/CascadiaMono-Italic.ttf');
+        font-display: block;
+        src: url('/fonts/CascadiaMono-Italic.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Cascadia Mono';
         font-style: normal;
         font-weight: 600;
-        src: url('/fonts/CascadiaMono-SemiBold.ttf');
+        font-display: block;
+        src: url('/fonts/CascadiaMono-SemiBold.woff2') format('woff2');
     }
 
     @font-face {
         font-family: 'Cascadia Mono';
         font-style: italic;
         font-weight: 600;
-        src: url('/fonts/CascadiaMono-SemiBoldItalic.ttf');
-    }
-
-    @font-face {
-        font-family: 'JetBrains Mono';
-        font-style: normal;
-        src: url('/fonts/JetBrainsMono-VariableFont_wght.ttf');
-    }
-
-    @font-face {
-        font-family: 'JetBrains Mono';
-        font-style: italic;
-        src: url('/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf');
+        font-display: block;
+        src: url('/fonts/CascadiaMono-SemiBoldItalic.woff2') format('woff2');
     }
 }

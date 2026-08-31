@@ -15,6 +15,8 @@
         {% set_global og_image = page.extra.image %}
     {% elif config.extra is defined and config.extra.og_image is defined and config.extra.og_image %}
         {% set_global og_image = config.extra.og_image %}
+    {% elif config.extra is defined and config.extra.homepage_image is defined %}
+        {% set_global og_image = config.extra.homepage_image.src %}
     {% elif config.extra is defined and config.extra.homepage_img_url is defined and config.extra.homepage_img_url %}
         {% set_global og_image = config.extra.homepage_img_url %}
     {% endif %}

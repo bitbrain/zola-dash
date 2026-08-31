@@ -8,11 +8,21 @@
 
 {% block content %}
 <div class="flex-1 lg:w-screen flex flex-col lg:flex-row items-center lg:items-start lg:text-left">
-    {% if config.extra.homepage_img_url %}
+    {% if config.extra.homepage_image is defined %}
     <div class="relative h-64 w-full overflow-hidden lg:h-auto lg:w-1/2 lg:self-stretch">
         <img
-            src="{{ config.extra.homepage_img_url }}"
+            src="{{ config.extra.homepage_image.src }}"
+            {% if config.extra.homepage_image.srcset %}srcset="{{ config.extra.homepage_image.srcset }}"{% endif %}
+            {% if config.extra.homepage_image.sizes %}sizes="{{ config.extra.homepage_image.sizes }}"{% endif %}
+            width="{{ config.extra.homepage_image.width }}"
+            height="{{ config.extra.homepage_image.height }}"
+            fetchpriority="high"
+            decoding="async"
             class="absolute inset-0 h-full w-full object-cover"/>
+    </div>
+    {% elif config.extra.homepage_img_url %}
+    <div class="relative h-64 w-full overflow-hidden lg:h-auto lg:w-1/2 lg:self-stretch">
+        <img src="{{ config.extra.homepage_img_url }}" fetchpriority="high" decoding="async" class="absolute inset-0 h-full w-full object-cover"/>
     </div>
     {% endif %}
     <div class="w-full flex-1 lg:w-1/2 flex flex-col lg:self-stretch">
@@ -29,7 +39,7 @@
                         <a class="font-sans text-gray-500 hover:text-gray-400
                             dark:text-slate-500 dark:hover:text-slate-400 transition"
                             href="/blog">
-                            Visit my blog <i class="las la-arrow-right"></i>
+                            Visit my blog {{ macros::icon(name="arrow-right") }}
                         </a>
                     </div>
                     {% block social %}
@@ -38,7 +48,7 @@
                                 {% for i in config.extra.social %}
                                     <div class="text-slate-500 hover:text-slate-700 transition">
                                     <a href="{{ i.url }}" target="_blank" rel="noopener noreferrer">
-                                        <i class="{{ i.icon }}"></i>
+                                            {{ macros::icon(name=i.icon) }}
                                     </a>
                                     </div>
                                 {% endfor %}

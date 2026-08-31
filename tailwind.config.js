@@ -16,7 +16,7 @@ module.exports = {
     fontFamily: {
       serif: ['"Crimson Pro"', ...defaultTheme.fontFamily.serif],
       sans: ['"Work Sans"', ...defaultTheme.fontFamily.sans],
-      mono: ['"Cascadia Mono"', '"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
+      mono: ['"Cascadia Mono"', ...defaultTheme.fontFamily.mono],
     },
     extend: {
       colors: {

@@ -45,7 +45,6 @@ prompt = "whoami"
 theme_name = "zola-dash"
 version = "v2"
 
-# Refer https://icons8.com/line-awesome for list of icons
 # Both `url` and `icon` should be set for each entry
 [[extra.social]]
 url = "https://github.com/ssiyad/boring"

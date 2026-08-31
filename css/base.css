@@ -110,7 +110,7 @@ body.dark {
         inline-size: min(100%, var(--article-max-inline-size));
         margin: 0 auto 2.5rem;
         color: var(--article-muted);
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
         font-size: .875rem;
         text-decoration: none;
     }
@@ -148,7 +148,7 @@ body.dark {
         gap: .5rem;
         margin-bottom: 1.25rem;
         color: var(--article-meta-color);
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
         font-size: .875rem;
     }
 
@@ -165,7 +165,7 @@ body.dark {
         max-width: 44rem;
         margin: 1rem 0 0;
         color: var(--article-muted);
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
         font-size: 1rem;
         line-height: 1.7;
     }
@@ -173,7 +173,7 @@ body.dark {
     .article-rule {
         margin-top: 1.25rem;
         color: var(--dash-accent);
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
     }
 
     .article-sidebar {
@@ -188,7 +188,7 @@ body.dark {
 
     .article-toc {
         color: var(--article-muted);
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
         font-size: .8125rem;
     }
 
@@ -246,7 +246,7 @@ body.dark {
         flex-direction: column;
         align-items: flex-start;
         gap: .75rem;
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
     }
 
     .article-author__avatar {
@@ -300,7 +300,7 @@ body.dark {
     .article-prose {
         grid-area: content;
         color: var(--article-text);
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
         font-size: 1.2rem;
         line-height: 1.75;
     }
@@ -484,7 +484,7 @@ body.dark {
     .blog-index {
         inline-size: min(100%, var(--article-max-inline-size));
         margin-inline: auto;
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
         font-size: 1.2rem;
     }
 
@@ -582,7 +582,7 @@ body.dark {
         padding: 1rem var(--article-gutter);
         background: var(--article-bg);
         color: var(--article-muted);
-        font-family: "Cascadia Mono", "JetBrains Mono", monospace;
+        font-family: "Cascadia Mono", monospace;
         font-size: .875rem;
     }
 

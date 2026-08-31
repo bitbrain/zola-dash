@@ -26,17 +26,19 @@
 .header-links>a:nth-of-type(1):hover{color:var(--dash-accent)}
 
 /* Homepage social icon hover colors (first four) */
-.homepage-social>*:nth-of-type(1):hover i{color:var(--dash-green)!important}
-.homepage-social>*:nth-of-type(2):hover i{color:var(--dash-pink)!important}
-.homepage-social>*:nth-of-type(3):hover i{color:var(--dash-yellow)!important}
-.homepage-social>*:nth-of-type(4):hover i{color:var(--dash-accent)!important}
+.homepage-social>*:nth-of-type(1):hover .icon{color:var(--dash-green)!important}
+.homepage-social>*:nth-of-type(2):hover .icon{color:var(--dash-pink)!important}
+.homepage-social>*:nth-of-type(3):hover .icon{color:var(--dash-yellow)!important}
+.homepage-social>*:nth-of-type(4):hover .icon{color:var(--dash-accent)!important}
 .article-author__social>a:nth-of-type(1):hover{color:var(--dash-green)}
 .article-author__social>a:nth-of-type(2):hover{color:var(--dash-pink)}
 .article-author__social>a:nth-of-type(3):hover{color:var(--dash-yellow)}
 .article-author__social>a:nth-of-type(4):hover{color:var(--dash-accent)}
 
 /* Disable hover transitions on header + homepage social links */
-.header-links a,.header-links i,.homepage-social>*,.homepage-social a,.homepage-social i,.article-author__social a,.article-author__social i{transition:none!important}
+.header-links a,.header-links .icon,.homepage-social>*,.homepage-social a,.homepage-social .icon,.article-author__social a,.article-author__social .icon{transition:none!important}
+
+.icon{display:inline-block;width:1em;height:1em;vertical-align:-.125em}
 
 
 /* Author box avatar sizing */
