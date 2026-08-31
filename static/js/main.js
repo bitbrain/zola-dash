@@ -1,13 +1,14 @@
-function enableDarkMode() {
-    const e = document.getElementsByTagName('html')[0];
-    e.classList.add('dark');
-    localStorage.setItem('is_darkmode_set', e.classList.contains('dark'));
+const darkModeStorageKey = 'is_darkmode_set';
+
+function syncDarkMode() {
+    const isDarkMode = localStorage.getItem(darkModeStorageKey) !== 'false';
+    document.documentElement.classList.toggle('dark', isDarkMode);
 }
 
 function toggleDarkMode() {
-    const e = document.getElementsByTagName('html')[0];
-    e.classList.toggle('dark');
-    localStorage.setItem('is_darkmode_set', e.classList.contains('dark'));
+    const isDarkMode = !document.documentElement.classList.contains('dark');
+    document.documentElement.classList.toggle('dark', isDarkMode);
+    localStorage.setItem(darkModeStorageKey, String(isDarkMode));
 }
 
 function toggleBackToTop() {
@@ -20,7 +21,8 @@ function backToTop() {
     window.scrollTo(0, 0);
 }
 
-if (localStorage.getItem('is_darkmode_set') === 'true') enableDarkMode();
+syncDarkMode();
+window.addEventListener('pageshow', syncDarkMode);
 
 document
     .getElementById('darkmode-toggle')

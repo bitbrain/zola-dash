@@ -35,6 +35,20 @@
 .article-author__social>a:nth-of-type(3):hover{color:var(--dash-yellow)}
 .article-author__social>a:nth-of-type(4):hover{color:var(--dash-accent)}
 
+.header-links>a,
+.header-links>#darkmode-toggle,
+.header-links>#back-to-top:not(.hidden){
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:2rem;
+  height:2rem;
+  border-radius:50%;
+}
+.header-links>a:hover,
+.header-links>#darkmode-toggle:hover,
+.header-links>#back-to-top:not(.hidden):hover{background:var(--article-raised)}
+
 /* Disable hover transitions on header + homepage social links */
 .header-links a,.header-links .icon,.homepage-social>*,.homepage-social a,.homepage-social .icon,.article-author__social a,.article-author__social .icon{transition:none!important}
 

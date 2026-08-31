@@ -217,8 +217,8 @@ body.dark {
     .article-toc a {
         display: block;
         margin: .15rem 0;
-        padding: .35rem .5rem;
-        border-left: 2px solid transparent;
+        padding: .35rem .75rem;
+        border-radius: 9999px;
         color: inherit;
         line-height: 1.45;
         text-decoration: none;
@@ -229,11 +229,19 @@ body.dark {
     }
 
     .article-toc a:hover {
+        background: var(--article-surface);
         color: var(--article-link);
     }
 
     .article-toc a[aria-current="true"] {
-        border-left-color: var(--dash-accent);
+        padding-left: 1.25rem;
+        background:
+            radial-gradient(
+                circle at .55rem 50%,
+                var(--dash-accent) 0 .2rem,
+                transparent .21rem
+            ),
+            var(--article-surface);
         color: var(--dash-accent);
     }
 
@@ -254,8 +262,7 @@ body.dark {
         width: 6rem;
         height: 6rem;
         flex: 0 0 6rem;
-        border-radius: 32%;
-        corner-shape: squircle;
+        border-radius: 50%;
         object-fit: cover;
         object-position: 75% 35%;
     }
@@ -380,12 +387,44 @@ body.dark {
     }
 
     .article-prose ul {
-        list-style-type: square;
+        list-style: none;
     }
 
     .article-prose li {
         margin: .35rem 0;
         padding-left: .25rem;
+    }
+
+    .article-prose ul > li {
+        position: relative;
+    }
+
+    .article-prose ul > li::before {
+        position: absolute;
+        top: .875em;
+        left: -1rem;
+        width: .45rem;
+        height: .45rem;
+        border-radius: 50%;
+        background: var(--dash-blue);
+        content: "";
+        transform: translateY(-50%);
+    }
+
+    .article-prose ul > li:nth-child(5n + 2)::before {
+        background: var(--dash-green);
+    }
+
+    .article-prose ul > li:nth-child(5n + 3)::before {
+        background: var(--dash-yellow);
+    }
+
+    .article-prose ul > li:nth-child(5n + 4)::before {
+        background: var(--dash-pink);
+    }
+
+    .article-prose ul > li:nth-child(5n + 5)::before {
+        background: var(--dash-red);
     }
 
     .article-prose li::marker {
@@ -410,6 +449,7 @@ body.dark {
 
     .article-prose :not(pre) > code {
         padding: .1rem .3rem;
+        border-radius: .35rem;
         background: var(--article-raised);
         color: var(--article-code);
         font-size: .95em;
@@ -420,7 +460,7 @@ body.dark {
         padding: 1rem;
         background: var(--article-surface) !important;
         border: 1px solid var(--article-raised);
-        border-radius: 0;
+        border-radius: 1rem;
         color: var(--article-text);
         font-family: inherit;
         font-size: .9375rem;
@@ -433,9 +473,20 @@ body.dark {
     }
 
     .article-prose blockquote {
+        position: relative;
         padding: .15rem 0 .15rem 1rem;
-        border-left: 2px solid var(--article-quote);
         color: var(--article-quote);
+    }
+
+    .article-prose blockquote::before {
+        position: absolute;
+        top: .15rem;
+        bottom: .15rem;
+        left: 0;
+        width: 2px;
+        border-radius: 9999px;
+        background: var(--article-quote);
+        content: "";
     }
 
     .article-prose blockquote :where(strong, em, code, a) {
@@ -461,11 +512,14 @@ body.dark {
         max-width: 100%;
         height: auto;
         border: 1px solid var(--article-raised);
+        border-radius: .75rem;
     }
 
     .article-prose table {
         width: 100%;
         border-collapse: collapse;
+        border-radius: .75rem;
+        overflow: hidden;
         font-size: .9rem;
     }
 
@@ -534,6 +588,7 @@ body.dark {
     .blog-index__link:focus-visible {
         outline: 1px solid var(--dash-accent);
         outline-offset: 3px;
+        border-radius: .5rem;
     }
 
     .blog-index__title {
@@ -656,6 +711,7 @@ body.dark {
             position: static;
             margin-bottom: 2.5rem;
             padding: 1rem;
+            border-radius: 1rem;
             background: var(--article-surface);
         }
 
