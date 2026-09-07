@@ -1,3 +1,4 @@
 @import './base.css';
 @import './fonts.css';
+@import './components/video-player.css';
 @import './overrides.css';

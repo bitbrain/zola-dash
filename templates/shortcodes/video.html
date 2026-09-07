@@ -1,0 +1,30 @@
+<figure class="article-video" data-video-player>
+    <video loop preload="metadata" playsinline{% if autoplay | default(value=false) %} autoplay{% endif %}{% if muted | default(value=false) %} muted{% endif %}>
+        <source src="{{ src }}" type="video/mp4">
+    </video>
+    <button class="article-video__overlay" type="button" aria-label="Play video" data-video-toggle>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="article-video__controls">
+        <button type="button" aria-label="Play video" data-video-toggle>
+            <svg class="article-video__play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="article-video__pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>
+        </button>
+        <span data-video-current>0:00</span>
+        <input type="range" min="0" max="100" value="0" step="0.1" aria-label="Video progress" data-video-progress>
+        <span data-video-duration>0:00</span>
+        <button type="button" aria-label="Mute video" data-video-mute>
+            <svg class="article-video__sound" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z"/>
+                <path d="M16 9.5a4 4 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="article-video__muted" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9v6h4l5 4V5L8 9H4z"/>
+                <path d="m16 9 5 5m0-5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <button type="button" aria-label="Enter fullscreen" data-video-fullscreen>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg>
+        </button>
+    </div>
+</figure>
